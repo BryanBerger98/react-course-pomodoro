@@ -1,38 +1,56 @@
-.App {
-  text-align: center;
+.container {
+    padding: 3rem;
+    background-color:beige;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+    font-weight: 600;
+    font-size: 3rem;
+    color:tomato;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.clock-timer {
+    font-weight: bolder;
+    font-size: 4rem;
+    color:tomato;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.clock-btn {
+    padding: .6rem 1.8rem;
+    font-size: 1.8rem;
+    border-radius: 20px;
+    color:beige;
+    
+    border: none;
 }
 
-.App-link {
-  color: #61dafb;
+.clock-btn-start {
+    background-color: tomato;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.clock-btn-stop {
+    background-color:sandybrown;
+}
+
+.clock-btn:hover {
+    cursor: pointer;
+}
+
+.timers-table {
+    margin-top: 3rem;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.timers-table th, .timers-table td {
+    padding: .5rem;
+    text-align: left;
+}
+
+.timers-table th {
+    border-bottom: 1px solid black;
 }

@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react";
+import './App.css'
+import Timer from "./Timer";
+import TimersTable from "./TimersTable";
+export default class Clock extends Component {
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    constructor(props) {
+        super(props);
+        this.state = {
+          timers: []
+        };
+    }
+
+    saveTime(time) {
+      const timers = [...this.state.timers, time];
+      this.setState({
+        timers
+      });
+    }
+
+    render() {
+        return(
+          <div className="container">
+            <h1>Pomodoro Timer</h1>
+            <Timer saveTime={this.saveTime.bind(this)}/>
+            {this.state.timers && this.state.timers.length > 0 && <TimersTable timers={this.state.timers} />}
+          </div>
+        );
+    }
+
 }
-
-export default App;
