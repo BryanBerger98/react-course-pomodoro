@@ -36,7 +36,6 @@ export default function Field({value, onChange, validation, type, label, placeho
 
    return(
         <div style={style.inputGroup}>
-            {console.log('RENDER FIELD', label)}
             <label htmlFor={id}>{label}</label>
             {
                 type === 'text' && <input id={id} type="text" placeholder={placeholder} style={style.input} value={value} onChange={handleInputChange} />

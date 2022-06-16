@@ -1,24 +1,27 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { TasksContext } from "./contexts/Tasks";
 import useTimer from "./hooks/useTimer";
 import TaskForm from "./TaskForm";
 import TimeDisplay from "./TimeDisplay";
 import TimerText from "./TimerText";
 
-export default function Timer({saveTime}) {
+const Timer = () => {
 
     const [isTimerStarted, setIsTimerStarted] = useState(false);
     const {time, startTimer, stopTimer} = useTimer(1000);
+
+    const { addTask } = useContext(TasksContext);
 
     const handleStartTimer = ({title, description}) => {
         if (!isTimerStarted) {
             setIsTimerStarted(true);
             startTimer();
         } else {
-            saveTime({
+            addTask({
                 ...stopTimer(),
                 title: title ? title : 'No title',
                 description: description ? description : 'No description'
-            });
+            })
             setIsTimerStarted(false);
         }
     }
@@ -31,4 +34,5 @@ export default function Timer({saveTime}) {
         </>
     )
 
-}
+};
+export default Timer;

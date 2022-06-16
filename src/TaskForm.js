@@ -29,7 +29,6 @@ export default function TaskForm({isTimerStarted, onSubmit}) {
 
     return(
         <form style={style.form} onSubmit={handleSubmitForm}>
-            {console.log('RENDER FORM')}
             <Field value={formValue.title} onChange={(v) => setFormValue({...formValue, title: v})} type={'text'} label={'Title'} placeholder={'Add title to your task'} validation={{type: 'string', required: true, length: 4}} />
             <Field value={formValue.description} onChange={(v) => setFormValue({...formValue, description: v})} type={'textarea'} label={'Description'} placeholder={'Add description to your task'} validation={{type: 'string'}} />
             <Button color={isTimerStarted ? 'sandybrown' : 'tomato'} type={'submit'}>
