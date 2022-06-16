@@ -1,31 +1,29 @@
-import { Component } from "react";
+import { useState } from 'react';
 import './App.css'
 import Timer from "./Timer";
 import TimersTable from "./TimersTable";
-export default class Clock extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-          timers: []
-        };
-    }
+export default function App() {
 
-    saveTime(time) {
-      const timers = [...this.state.timers, time];
-      this.setState({
-        timers
-      });
-    }
+  const [timers, setTimers] = useState([]);
 
-    render() {
-        return(
-          <div className="container">
-            <h1>Pomodoro Timer</h1>
-            <Timer saveTime={this.saveTime.bind(this)}/>
-            {this.state.timers && this.state.timers.length > 0 && <TimersTable timers={this.state.timers} />}
-          </div>
-        );
-    }
+  const saveTime = (time) => {
+    setTimers([...timers, time]);
+  }
+
+  const displayTimerDetails = (timer) => {
+    alert(`
+      ${new Date(timer.startedAt).toLocaleDateString()} at ${new Date(timer.startedAt).toLocaleTimeString()} \n
+      ${timer.time}
+    `)
+  }
+
+  return(
+    <div className="container">
+      <h1>Pomodoro Timer</h1>
+      <Timer saveTime={saveTime}/>
+      {timers && timers.length > 0 && <TimersTable timers={timers} onDisplayTimerDetails={displayTimerDetails}/>}
+    </div>
+  )
 
 }

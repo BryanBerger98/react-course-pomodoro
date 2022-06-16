@@ -1,32 +1,30 @@
-import { Component } from "react";
+import TimeDisplay from "./TimeDisplay";
 
-export default class TimersTable extends Component {
+export default function TimersTable({timers, onDisplayTimerDetails}) {
 
-    render() {
-        return(
-            <table className="timers-table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        this.props.timers.map((timer, index) => (
-                            <tr key={index}>
-                                <td>
-                                    {new Date(timer.startDate).toLocaleDateString()} at {new Date(timer.startDate).toLocaleTimeString()}
-                                </td>
-                                <td>
-                                    {timer.timeToDisplay}
-                                </td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
-        )
-    }
+    return(
+        <table className="timers-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    timers.map((timer, index) => (
+                        <tr key={index} onClick={() => onDisplayTimerDetails(timer)}>
+                            <td>
+                                {new Date(timer.startedAt).toLocaleDateString()} at {new Date(timer.startedAt).toLocaleTimeString()}
+                            </td>
+                            <td>
+                                <TimeDisplay time={timer.time} />
+                            </td>
+                        </tr>
+                    ))
+                }
+            </tbody>
+        </table>
+    )
 
 }
