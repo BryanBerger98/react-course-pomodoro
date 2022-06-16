@@ -7,6 +7,8 @@ export default function TimersTable({timers, onDisplayTimerDetails}) {
             <thead>
                 <tr>
                     <th>Date</th>
+                    <th>Task</th>
+                    <th>Description</th>
                     <th>Time</th>
                 </tr>
             </thead>
@@ -16,6 +18,12 @@ export default function TimersTable({timers, onDisplayTimerDetails}) {
                         <tr key={index} onClick={() => onDisplayTimerDetails(timer)}>
                             <td>
                                 {new Date(timer.startedAt).toLocaleDateString()} at {new Date(timer.startedAt).toLocaleTimeString()}
+                            </td>
+                            <td>
+                                {timer.title}
+                            </td>
+                            <td>
+                                {timer.description}
                             </td>
                             <td>
                                 <TimeDisplay time={timer.time} />

@@ -1,7 +1,6 @@
-
 import { useState } from "react";
-import Button from "./Button";
 import useTimer from "./hooks/useTimer";
+import TaskForm from "./TaskForm";
 import TimeDisplay from "./TimeDisplay";
 import TimerText from "./TimerText";
 
@@ -10,12 +9,16 @@ export default function Timer({saveTime}) {
     const [isTimerStarted, setIsTimerStarted] = useState(false);
     const {time, startTimer, stopTimer} = useTimer(1000);
 
-    const handleStartTimer = () => {
+    const handleStartTimer = ({title, description}) => {
         if (!isTimerStarted) {
             setIsTimerStarted(true);
             startTimer();
         } else {
-            saveTime(stopTimer());
+            saveTime({
+                ...stopTimer(),
+                title: title ? title : 'No title',
+                description: description ? description : 'No description'
+            });
             setIsTimerStarted(false);
         }
     }
@@ -23,9 +26,7 @@ export default function Timer({saveTime}) {
     return(
         <>
             <TimeDisplay time={time} className='clock-timer' />
-            <Button color={isTimerStarted ? 'sandybrown' : 'tomato'} onClick={handleStartTimer}>
-                {isTimerStarted ? 'Stop' : 'Start'}
-            </Button>
+            <TaskForm isTimerStarted={isTimerStarted} onSubmit={handleStartTimer} />
             <TimerText isTimerStarted={isTimerStarted} />
         </>
     )
