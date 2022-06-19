@@ -15,10 +15,17 @@ const style = {
     }
 }
 
+function wait(t) {
+    const start = Date.now();
+    while(Date.now() - start < t){};
+}
+
 export default function Field({value, onChange, validation, type, label, placeholder}) {
 
     const id = useId();
     const [error, setError] = useState(null);
+
+    // wait(500);
 
     const handleInputChange = (e) => {
         const { value } = e.target;

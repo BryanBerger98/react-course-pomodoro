@@ -1,6 +1,6 @@
 import { memo } from "react";
 
-const Button = memo(function ({color, type = 'button', onClick, children}) {
+const Button = memo(({color, type = 'button', onClick, children}) => {
 
     const btnStyle = {
         padding:'.6rem 1.8rem',

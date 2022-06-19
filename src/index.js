@@ -8,9 +8,11 @@ import TasksContextProvider from './contexts/Tasks';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-    <ThemeContextProvider>
-      <TasksContextProvider>
-        <App />
-      </TasksContextProvider>
-    </ThemeContextProvider>
+    <React.StrictMode>
+      <ThemeContextProvider>
+        <TasksContextProvider>
+          <App />
+        </TasksContextProvider>
+      </ThemeContextProvider>
+    </React.StrictMode>
 );

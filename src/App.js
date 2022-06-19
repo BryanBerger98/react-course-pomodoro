@@ -1,8 +1,15 @@
-import { useContext } from 'react';
+import { lazy, Suspense, useContext } from 'react';
 import './App.css'
 import { ThemeContext } from './contexts/Theme';
 import Timer from "./Timer";
-import TimersTable from "./TimersTable";
+
+const TimersTable = lazy(() => import('./TimersTable').then(module => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(module);
+    }, 2000);
+  })
+}));
 
 export default function App() {
 
@@ -13,7 +20,9 @@ export default function App() {
       <h1>Pomodoro Timer</h1>
       <button type='button' onClick={toggleTheme}>Toggle to {theme === 'light' ? 'dark' : 'light'}</button>
       <Timer />
-      <TimersTable />
+      <Suspense fallback={'Loading...'}>
+        <TimersTable />
+      </Suspense>
     </div>
   )
 
